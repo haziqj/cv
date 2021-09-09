@@ -18,12 +18,12 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       
       - name: Install rmarkdown
-        run: Rscript -e 'install.packages(c("rmarkdown", "pagedown", "tidyverse", "iprior"))'
+        run: Rscript -e 'install.packages(c("rmarkdown", "pagedown", "tidyverse", "iprior", "here"))'
         
       - name: Install tinytex
         run: Rscript -e 'tinytex::install_tinytex()'        
         
-      - name: Render Book
+      - name: Build PDF CV
         run: Rscript -e 'pagedown::chrome_print("index.Rmd")'
         
       - uses: actions/upload-artifact@v1 
