@@ -15,7 +15,7 @@
   --viewer-shadow-color: #313131; /* this marks the pages */
   --my-darkgray: #929598;
   --indentation: 18%;
-  --last-updated: " \00a0 \00a0 \00a0 \00a0 Last updated: April 2021";
+  --last-updated: " \00a0 \00a0 \00a0 \00a0 Last updated: 9 September 2021";
   --viewer-background-color: #dcdcdc;
 }
 
@@ -71,6 +71,13 @@ h3 {
   margin-left: var(--indentation);
   margin-bottom: 0.6em;
 }
+h5 {
+  margin-top: 1.0em;
+  margin-bottom: 0.4em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .conference-presentations-omitted {
   margin-left: var(--indentation);
   font-style: italic;
@@ -127,6 +134,7 @@ h3 {
 .research-interests {
   display: grid;
   grid-template-columns: 18.5% 81.5%;
+  font-size: 11pt;
 }
 .interests p {
   line-height: 135%;
@@ -160,7 +168,10 @@ h3 {
   break-inside: avoid;
 }
 
-
+.cv-entry-gray {
+  /*font-style: italic;*/
+  color: var(--my-darkgray);
+}
 
 /* make titles bold */
 .cv-entry-title {
