@@ -31,3 +31,7 @@ jobs:
           name: haziq_cv
           path: index.pdf
           
+      - uses: actions/download-artifact@v2
+        with:
+          name: haziq_cv        
+          
