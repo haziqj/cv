@@ -1,7 +1,9 @@
 ---
-description: CV -- Haziq Jamil
+title-prefix: CV -- Haziq Jamil
+description: Curriculum vitae for Dr Haziq Jamil, Assistant Professor in Statistics (UBD).
 output:
   pagedown::html_paged:
+    title: Haziq
     css: ["css/one-column-paged-academic.css"]
     number_sections: false
 links-to-footnotes: true
