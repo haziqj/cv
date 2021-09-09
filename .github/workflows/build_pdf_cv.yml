@@ -26,12 +26,11 @@ jobs:
       - name: Build PDF CV
         run: Rscript -e 'pagedown::chrome_print(rmarkdown::render("index.Rmd", params = list(pdf_mode = TRUE)))'
 
-      - uses: actions/upload-artifact@v2 
+      - name: Deploy
+        uses: Cecilapp/GitHub-Pages-deploy@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: haziq_cv
-          path: index.pdf
-          
-      - uses: actions/download-artifact@v2
-        with:
-          name: haziq_cv        
+          email: haziq.jamil@ubd.edu.bn
+          build_dir: /             
           
