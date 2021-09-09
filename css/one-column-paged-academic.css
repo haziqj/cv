@@ -257,3 +257,8 @@ span.talk-title {
   color:  black;
   text-decoration: none;  
 }
+
+.mylink-gray a {
+  color:  var(--my-darkgray);
+  text-decoration: none;  
+}
