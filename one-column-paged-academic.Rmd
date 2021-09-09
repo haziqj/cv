@@ -1,4 +1,5 @@
 ---
+description: CV -- Haziq Jamil
 output:
   pagedown::html_paged:
     css: ["css/one-column-paged-academic.css"]
@@ -93,7 +94,7 @@ https://ulriklyngs.com
 
 ::::::
 
-## Research summary
+## Brief
 :::::: {.research-interests}
 
 <!-- ::: {.spacer} -->
@@ -106,7 +107,7 @@ ggplot(iprior::gen_smooth(seed = 123), aes(X, y)) +
   theme_void()
 ```
 
-Hello
+Download
 :::
 
 ::: {.interests}
