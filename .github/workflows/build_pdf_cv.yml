@@ -26,8 +26,8 @@ jobs:
       - name: Build PDF CV
         run: Rscript -e 'pagedown::chrome_print("index.Rmd")'
         
-      - uses: actions/upload-artifact@v1 
+      - uses: actions/upload-artifact@v2 
         with:
-          name: haziq_cv_built.pdf
-          path: /
+          name: haziq_cv
+          path: index.pdf
           
