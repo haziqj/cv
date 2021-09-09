@@ -10,7 +10,7 @@ links-to-footnotes: true
 # knit: pagedown::chrome_print
 params:
   pdf_mode:
-    value: false
+    value: true
 ---
 
 ```{r setup, include = FALSE}
