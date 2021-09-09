@@ -10,7 +10,7 @@ links-to-footnotes: true
 # knit: pagedown::chrome_print
 params:
   pdf_mode:
-    value: true
+    value: false
 ---
 
 ```{r setup, include = FALSE}
@@ -234,7 +234,7 @@ cv_entries %>%
 ```
 
 
-## Publications {.three-split}
+## Research output {.three-split}
 
 <!-- :::::: {.grid-container-publications} -->
 <!-- ::: {.conference-publication-heading} -->
@@ -245,8 +245,7 @@ cv_entries %>%
 <!-- ::: -->
 <!-- :::::: -->
 
-<h3>Articles <span class="review-note">(peer-reviewed)</span></h3>
-
+### Articles [(peer-reviewed)]{.review-note}
 ```{r}
 publications %>%
   filter(type == "paper") %>% 
@@ -269,8 +268,7 @@ publications %>%
 ```
 
 <!-- <br class="pageBreak"> -->
-<h3>Working papers <span class="review-note">(preprints and unpublished reports)</span></h3>
-
+### Working papers [(preprints and unpublished reports)]{.review-note}
 ```{r}
 publications %>%
   filter(type == "preprint") %>% 
@@ -288,8 +286,7 @@ publications %>%
   knitr::kable()
 ```
 
-<h3>Software</h3>
-
+### Software
 ```{r}
 publications %>%
   filter(type == "software") %>% 
@@ -302,9 +299,7 @@ publications %>%
   knitr::kable()
 ```
 
-## Research dissemination
-
-### Posters and short presentations {.three-split}
+### Posters and short presentations 
 ```{r}
 cv_entries %>% 
   filter(type == 'poster', is.na(exclude)) %>% 
@@ -323,7 +318,7 @@ cv_entries %>%
   knitr::kable()
 ```
 
-### Talks {.three-split}
+### Talks 
 
 ::: {.conference-presentations-omitted}
 Further information for the following talks are available at  <span class='mylink'><a href='https://github.com/haziqj/cv'> haziqj.ml/talk </a></span>
