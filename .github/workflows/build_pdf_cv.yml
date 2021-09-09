@@ -1,0 +1,33 @@
+on:
+  push:
+     branches:
+       - main
+
+name: buildpdf
+
+jobs:
+  buildpdf:
+    name: Build-PDF
+    runs-on: macOS-latest
+    
+    steps:
+      - uses: actions/checkout@v1
+      
+      - uses: r-lib/actions/setup-r@v1
+      
+      - uses: r-lib/actions/setup-pandoc@v1
+      
+      - name: Install rmarkdown
+        run: Rscript -e 'install.packages(c("rmarkdown", "pagedown", "tidyverse", "iprior", "here", "gganimate"))'
+        
+      - name: Install tinytex
+        run: Rscript -e 'tinytex::install_tinytex()'        
+        
+      - name: Build PDF CV
+        run: Rscript -e 'pagedown::chrome_print("index.Rmd")'
+        
+      - uses: actions/upload-artifact@v1 
+        with:
+          name: haziq_cv_built.pdf
+          path: /
+          
