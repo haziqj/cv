@@ -8,7 +8,7 @@ name: buildpdf
 jobs:
   buildpdf:
     name: Build-PDF
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v1
