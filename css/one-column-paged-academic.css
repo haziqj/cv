@@ -1,7 +1,7 @@
 /* THIS CREATES BASIC PAGED LAYOUT IN COMBINATION WITH PAGED.HTML */
 @page{
   size: A4 portrait;
-  background: whitesmoke;
+  background: white;
 }
 
 :root{
