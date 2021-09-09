@@ -24,8 +24,8 @@ jobs:
         run: Rscript -e 'tinytex::install_tinytex()'        
         
       - name: Build PDF CV
-        run: Rscript -e 'pagedown::chrome_print("index.Rmd")'
-        
+        run: Rscript -e 'pagedown::chrome_print(rmarkdown::render("index.Rmd", params = list(pdf_mode = TRUE)))'
+
       - uses: actions/upload-artifact@v2 
         with:
           name: haziq_cv
