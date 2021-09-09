@@ -2,8 +2,7 @@ library(tidyverse)
 library(googlesheets4)
 gs4_deauth()
 
-sheets <- c("cv_entries", 
-            "publications")
+sheets <- c("cv_entries", "publications")
 
 store_sheet_in_csv <- function(sheet_name){
   read_sheet("https://docs.google.com/spreadsheets/d/1ta71CAGkcLqm-W1UdVRA_JJSddWV2TsrRZsCnQlmOis/edit?usp=sharing",

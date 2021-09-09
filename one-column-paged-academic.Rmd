@@ -1,17 +1,18 @@
 ---
-title-prefix: CV -- Haziq Jamil
+title: CV -- Haziq Jamil
 description: Curriculum vitae for Dr Haziq Jamil, Assistant Professor in Statistics (UBD).
 output:
   pagedown::html_paged:
     title: Haziq
-    css: ["css/one-column-paged-academic.css"]
+    css: ["css/one-column-paged-academic.css", "css/font-awesome-5.1.0/css/all.css"]
     number_sections: false
 links-to-footnotes: true
 # knit: pagedown::chrome_print
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, cache = TRUE,
+                      cache.path = "_cache.nosync/")
 library(tidyverse)
 library(knitr)
 library(lubridate)
@@ -86,45 +87,54 @@ cv_entries <- read_csv("_content/cv_entries.csv") %>%
 :::::: {.title-and-contact}
 
 ::: {.title}
-<h1 class="title">Ulrik Lyngs</h1>
+<h1 class="title">Haziq Jamil</h1>
 :::
 
 ::: {.contact-info}
-ulrik.lyngs@cs.ox.ac.uk  \
-https://ulriklyngs.com
+haziq.jamil@ubd.edu.bn <i class="fas fa-envelope"></i>
+https://haziqj.ml <i class="fas fa-globe-asia"></i>
 :::
 
 ::::::
 
-## Brief
+<!-- ## Brief -->
 :::::: {.research-interests}
 
 <!-- ::: {.spacer} -->
 <!-- ::: -->
-::: {}
-```{r, echo = FALSE, warning = FALSE, message = FALSE, out.width = "80%", fig.height = 3.5, fig.width = 2.5}
+::: {.mylink}
+```{r, out.width = "80%", fig.height = 2.8, fig.width = 2.5}
 library(tidyverse)
-ggplot(iprior::gen_smooth(seed = 123), aes(X, y)) +
-  geom_point() +
-  theme_void()
+# ggplot(iprior::gen_smooth(seed = 123), aes(X, y)) +
+#   geom_point() +
+#   theme_void()
+# options(gganimate.dev_args = list(bg = 'transparent'))
+load(file = "test.RData")
+p
 ```
 
-Download
+```{r, results = "asis"}
+cat("<a href='https://haziqj.ml'><i class='fas fa-download'></i> PDF</a>")
+```
 :::
 
 ::: {.interests}
-**Aims---**to develop and evaluate design patterns that help people exercise self-control over their use of smartphones and laptops.
-<br>
-**Methods---**controlled studies, user surveys, interviews, co-design workshops, web scraping, behaviour logging.
+I am an **Assistant Professor in Statistics** at _Universiti Brunei Darussalam_ (UBD).
+My interests lie in statistical methodology and computation, with applications towards the natural and social sciences.
 
-**I am passionate about** open and transparent research. 
-Since 2018, I have shared materials, analysis scripts, and data for all my work, and written my papers as reproducible documents in [R Markdown](https://rmarkdown.rstudio.com).
+Using the `R` programming language, I build statistical models to analyse data to gain insights, make predictions, and aid decision-making.
+I have written several peer-reviewed statistical articles and software packages, and I am available for statistical consulting work.
+
+<!-- **I am passionate about** open and transparent research.  -->
+<!-- Since 2018, I have shared materials, analysis scripts, and data for all my work, and written my papers as reproducible documents in [R Markdown](https://rmarkdown.rstudio.com). -->
 :::
 ::::::
 
 <div class="cv-entries">
 
+<!-- ## Test -->
 
+<!-- Hello there Hello there Hello there Hello there Hello there Hello there -->
 
 ## Education
 ```{r}

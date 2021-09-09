@@ -19,7 +19,6 @@
   --viewer-background-color: #dcdcdc;
 }
 
-
 /* Paged.js viewer */
 @media screen {
   body {
@@ -103,7 +102,7 @@ h3 {
   display: grid;
   grid-template-columns: 70% 30%;
   border-style: none none groove none;
-  margin-bottom: 1.8em;
+  margin-bottom: 1em;
   padding-bottom: 0.5em;
 }
 
@@ -241,4 +240,9 @@ hr {
 
 span.talk-title {
   padding-top: 0.2em;
+}
+
+.mylink a {
+  color:  black;
+  text-decoration: none;  
 }
