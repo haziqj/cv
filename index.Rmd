@@ -355,11 +355,11 @@ cv_entries %>%
 :::
 
 ::: {.interests}
-<i class='fas fa-chart-line'></i> &nbsp; **Programming, data analysis and visualisation** using R, BUGS/JAGS, Stan, Stata, Mplus, and Mathematica
+<i class='fas fa-fw fa-chart-line'></i> &nbsp; **Programming, data analysis and visualisation** using R, BUGS/JAGS, Stan, Stata, Mplus, and Mathematica
 
-<i class='fa fa-lg fa-flask'></i> &nbsp; **Reproducible research** using R Markdown, LaTeX, Git and AWS EC2
+<i class='fa fa-fw fa-flask'></i> &nbsp; **Reproducible research** using R Markdown, LaTeX, Git and AWS EC2
 
-<i class='fa fa-lg fa-laptop'></i> &nbsp; **Web development** using HTML, Hugo, Jekyll, GitHub Pages and Netlify
+<i class='fa fa-fw fa-laptop'></i> &nbsp; **Web development** using HTML, Hugo, Jekyll, GitHub Pages and Netlify
 :::
 
 ::::::
