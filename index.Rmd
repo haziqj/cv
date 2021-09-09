@@ -6,6 +6,7 @@ output:
     title: Haziq
     css: ["css/one-column-paged-academic.css", "css/font-awesome-5.1.0/css/all.css"]
     number_sections: false
+    self_contained: false
 links-to-footnotes: true
 # knit: pagedown::chrome_print
 params:
