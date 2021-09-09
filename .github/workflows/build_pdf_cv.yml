@@ -13,7 +13,7 @@ name: buildpdf
 jobs:
   buildpdf:
     name: Build-PDF
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     
     steps:
       - uses: actions/checkout@v1
@@ -41,7 +41,8 @@ jobs:
           name: haziq_cv_pdf
           path: index.pdf
 
-  checkout-and-deploy:
+  checkdep:
+    name: Checkout-and-Deploy
     runs-on: ubuntu-latest
     needs: buildpdf
 
