@@ -106,8 +106,8 @@ if (file.exists("index.pdf")) {
 :::
 
 ::: {.contact-info}
-haziq.jamil@ubd.edu.bn <i class="fas fa-envelope"></i>
-https://haziqj.ml <i class="fas fa-globe-asia"></i>
+haziq.jamil@ubd.edu.bn <i class="fas fa-fw fa-envelope"></i>
+https://haziqj.ml <i class="fas fa-fw fa-globe-asia"></i>
 :::
 
 ::::::
@@ -127,9 +127,9 @@ if (isTRUE(params$pdf_mode)) {
 
 ```{r download_view, results = "asis"}
 if(params$pdf_mode){
-  cat("<i class='fas fa-globe-asia'></i> View this CV online at *haziqj.ml/cv*")
+  cat("<i class='fas fa-fw fa-globe-asia'></i> View this CV online at *haziqj.ml/cv*")
 } else {
-  cat("<a href='https://haziqj.ml/cv/haziq_cv.pdf'><i class='fas fa-download'></i> Download a PDF of this CV</a>")
+  cat("<a href='https://haziqj.ml/cv/haziq_cv.pdf'><i class='fas fa-fw fa-download'></i> Download a PDF of this CV</a>")
 }
 ```
 :::
@@ -252,8 +252,8 @@ publications %>%
   filter(type == "paper") %>% 
   # insert appropriate icon for paper awards (and start with a line break)
   mutate(award = case_when(
-    !is.na(award) & str_detect(award, "honourable") ~ glue("<br><i class='fas fa-award'></i> <span class='publication-award'>{award}</span>"),
-    !is.na(award) ~ glue("<br><i class='fa fa-trophy'></i> <span class='publication-award'>{award}</span>"),
+    !is.na(award) & str_detect(award, "honourable") ~ glue("<br><i class='fas fa-fw fa-award'></i> <span class='publication-award'>{award}</span>"),
+    !is.na(award) ~ glue("<br><i class='fa fa-fw fa-trophy'></i> <span class='publication-award'>{award}</span>"),
     TRUE ~ ""
   )) %>% 
   # create citations
