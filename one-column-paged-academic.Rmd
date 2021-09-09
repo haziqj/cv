@@ -96,7 +96,17 @@ https://ulriklyngs.com
 ## Research summary
 :::::: {.research-interests}
 
-::: {.spacer}
+<!-- ::: {.spacer} -->
+<!-- ::: -->
+::: {}
+```{r, echo = FALSE, warning = FALSE, message = FALSE, out.width = "80%", fig.height = 3.5, fig.width = 2.5}
+library(tidyverse)
+ggplot(iprior::gen_smooth(seed = 123), aes(X, y)) +
+  geom_point() +
+  theme_void()
+```
+
+Hello
 :::
 
 ::: {.interests}
@@ -110,16 +120,6 @@ Since 2018, I have shared materials, analysis scripts, and data for all my work,
 ::::::
 
 <div class="cv-entries">
-## Research positions
-```{r}
-cv_entries %>% 
-  filter(type == 'research_positions', is.na(exclude)) %>%
-  mutate(what = glue("<span class='cv-entry-title'>{what}</span><br>",
-                     "{where}"
-                     )) %>% 
-  select(year, what) %>% 
-  kable()
-```
 
 
 
@@ -134,16 +134,6 @@ cv_entries %>%
   kable()
 ```
 
-## Major grants and funding
-```{r}
-cv_entries %>%
-  filter(type == 'major_grants') %>%
-  mutate(what = if_else(is.na(additional_info),
-                        glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}"),
-                        glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}.<br>{additional_info}"))) %>%
-  select(year, what) %>%
-  kable()
-```
 
 ## Awards & honours
 ```{r}
@@ -152,6 +142,28 @@ cv_entries %>%
   mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}")) %>%  
   blank_year_when_repeated() %>% 
   select(year, what) %>% 
+  kable()
+```
+
+## Experience
+```{r}
+cv_entries %>% 
+  filter(type == 'research_positions', is.na(exclude)) %>%
+  mutate(what = glue("<span class='cv-entry-title'>{what}</span><br>",
+                     "{where}"
+                     )) %>% 
+  select(year, what) %>% 
+  kable()
+```
+
+## Grants and funding
+```{r}
+cv_entries %>%
+  filter(type == 'major_grants') %>%
+  mutate(what = if_else(is.na(additional_info),
+                        glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}"),
+                        glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}.<br>{additional_info}"))) %>%
+  select(year, what) %>%
   kable()
 ```
 
@@ -269,169 +281,10 @@ cv_entries %>%
 
 ```
 
-<!-- <br class="pageBreak"> -->
-
-### Poster presentations {.three-split}
-```{r}
-cv_entries %>% 
-  filter(type == 'poster') %>%
-  mutate(where = if_else(!is.na(where) & !is.na(institution), glue(", {where}"), where),
-         department = if_else(!is.na(department), glue(", {department}"), department)) %>%
-  mutate(additional_info = if_else(!is.na(additional_info), glue(", {additional_info}"), "")) %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{institution}{where}</span>{department}{additional_info}<br>",
-                      "<span style='display:inline-block;' class='talk-title'>{what}</span>", 
-                     .na = "")) %>% 
-  padding_function(., "P") %>% 
-  blank_year_when_repeated() %>% 
-  select(year, number, what) %>%
-  knitr::kable()
-
-
-
-```
-
-### Podcasts {.three-split}
-```{r}
-cv_entries %>% 
-  filter(type == 'talk-podcast') %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{where}</span>, {what}")) %>%
-  padding_function(., "Pod") %>% 
-  blank_year_when_repeated() %>% 
-  select(year, number, what) %>% 
-  knitr::kable()
-
-```
-
-### Blog posts {.three-split}
-```{r}
-cv_entries %>% 
-  filter(type == 'pop-writing') %>%
-  mutate(what = glue("<span class='cv-entry-title'>{where}</span>, {what}")) %>%
-  padding_function(., "B") %>% 
-  blank_year_when_repeated() %>% 
-  select(year, number, what) %>% 
-  knitr::kable()
-```
-
-
-## R packages
-```{r}
-cv_entries %>% 
-  filter(type == 'programming' & is.na(exclude)) %>% 
-  replace_na(list(where = "", additional_info = "")) %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}")) %>%
-  arrange(desc(year)) %>% 
-  mutate(row_number = row_number()) %>% 
-  select(year, what) %>% 
-  kable()
-```
-
-## Publicly available research code & data
-```{r}
-pubs_w_number <- publications %>% 
-  select(type, authors_full, date, title, materials) %>% 
-  mutate(inclusive_type = if_else(type == "workshop paper" | type == "extended abstract", "abstract", type)) %>% 
-  group_by(inclusive_type) %>% 
-  arrange(date) %>% 
-  mutate(number = row_number(),
-         number = case_when(
-           inclusive_type == "conference paper" ~ glue("[C{number}]"),
-           inclusive_type == "journal article" ~ glue("[J{number}]"),
-           inclusive_type == "abstract" ~ glue("[A{number}]"),
-           TRUE ~ ""
-         ))
-
-public_code <- cv_entries %>% 
-  filter(type == 'open_research' & is.na(exclude)) %>% 
-  select(what, additional_info) %>% 
-  rename(title = additional_info) %>% 
-  left_join(pubs_w_number)
-
-public_code %>% 
-  mutate(year = year(date)) %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{what} {number}</span><br>", 
-                      "{authors_full}<br>",
-                      "{materials}")) %>% 
-  arrange(desc(date)) %>% 
-  select(year, what) %>% 
-  kable()
-```
-
-<!-- <br class="pageBreak"> -->
-
-## Teaching experience
-```{r}
-cv_entries %>% 
-  filter(type == 'teaching') %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}<br>",
-         "{additional_info}")) %>% 
-  select(year, what) %>% 
-  kable()
-```
-
-<!-- <br class="pageBreak"> -->
-
-## Service
-```{r}
-cv_entries %>% 
-  filter(type == 'service') %>% 
-  mutate(where = if_else(!is.na(url), glue("[{where}]({url})"), where)) %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{what}</span> {where}")) %>%
-  select(year, what) %>% 
-  kable()
-```
-
-
-<br class="pageBreak">
-
-## Selected work experience
-```{r}
-cv_entries %>% 
-  filter(type == 'work', is.na(one_column_paged)) %>% 
-  mutate(additional_info = replace_na(additional_info, "")) %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}<br>",
-                     "{additional_info}")) %>% 
-  select(year, what) %>% 
-  kable()
-```
-
-## Professional development
-```{r}
-cv_entries %>% 
-  filter(type == 'prof-dev') %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}")) %>%
-  select(year, what) %>% 
-  kable()
-```
-
-## Minor grants and funding
-```{r}
-cv_entries %>%
-  filter(type == 'minor_grants') %>%
-  mutate(what = if_else(!is.na(additional_info),
-                        glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}.<br> ", 
-                             "{additional_info}"),
-                        glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}"))) %>%
-  blank_year_when_repeated() %>% 
-  select(year, what) %>%
-  kable()
-```
-
-<br class="pageBreak">
-
-## Personal skills & volunteering {.packages}
-```{r}
-cv_entries %>%
-  filter(type == 'volunteering') %>%
-  mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}")) %>%
-  mutate(what = if_else(!is.na(additional_info), glue("{what}<br>{additional_info}"), what)) %>%
-  arrange(desc(date), desc(date_end)) %>% 
-  select(year, what) %>%
-  kable()
-```
 
 <!-- <br class="pageBreak"> -->
 
 <!-- close 'cv-entries' div -->
 </div>
+
 # Links
