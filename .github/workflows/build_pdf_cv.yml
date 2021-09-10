@@ -49,14 +49,13 @@ jobs:
     needs: buildpdf
 
     steps:
-      - name: Checkout again
-        uses: actions/checkout@v2
+      # - name: Checkout again
+      #   uses: actions/checkout@v2
 
       - name: Download PDF CV
         uses: actions/download-artifact@v2
         with:
-          name: haziq_cv_pdf  
-          path: haziq_cv_new.pdf          
+          name: haziq_cv_pdf       
 
       - name: Put PDF CV in main folder
         uses: Cecilapp/GitHub-Pages-deploy@v3
