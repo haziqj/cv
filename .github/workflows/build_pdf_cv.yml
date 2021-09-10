@@ -1,12 +1,12 @@
-on:
-  push:
-     branches:
-       - main
-
 # on:
-#   schedule:
-#     # * is a special character in YAML so you have to quote this string
-#     - cron:  '0 17 * * *'      
+#   push:
+#      branches:
+#        - main
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 17 * * *'      
 
 name: buildpdf
 
@@ -35,13 +35,13 @@ jobs:
         run: Rscript -e 'pagedown::chrome_print(rmarkdown::render("index.Rmd", params = list(pdf_mode = TRUE)))'
 
       - name: Rename PDF
-        run: Rscript -e 'file.rename("index.pdf", "haziq_cv_new.pdf")'    
+        run: Rscript -e 'file.rename("index.pdf", "haziq_cv.pdf")'    
 
       - name: Upload PDF CV
         uses: actions/upload-artifact@v2
         with:
           name: haziq_cv_pdf
-          path: haziq_cv_new.pdf
+          path: haziq_cv.pdf
 
   checkdep:
     name: Checkout-and-Deploy
@@ -49,9 +49,6 @@ jobs:
     needs: buildpdf
 
     steps:
-      # - name: Checkout again
-      #   uses: actions/checkout@v2
-
       - name: Download PDF CV
         uses: actions/download-artifact@v2
         with:
@@ -64,7 +61,7 @@ jobs:
         with:
           email: haziq.jamil@ubd.edu.bn  
           build_dir: .
-          branch: gh-pages
+          branch: main
 
       - uses: dsaltares/fetch-gh-release-asset@master
         with:
