@@ -43,13 +43,6 @@ jobs:
           name: haziq_cv_pdf
           path: haziq_cv_new.pdf
 
-      - uses: dsaltares/fetch-gh-release-asset@master
-        with:
-          repo: "haziqj/stat-tables"
-          file: "stat-tables.pdf"
-          target: "subdir/stat-tables.pdf"
-          token: ${{ secrets.GITHUB_TOKEN }}
-
   checkdep:
     name: Checkout-and-Deploy
     runs-on: ubuntu-latest
@@ -73,4 +66,11 @@ jobs:
           email: haziq.jamil@ubd.edu.bn  
           build_dir: .
           branch: gh-pages
+
+      - uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: haziqj/stat-tables
+          file: stat-tables.pdf
+          target: stat-tables.pdf
+          token: ${{ secrets.GITHUB_TOKEN }}          
           
