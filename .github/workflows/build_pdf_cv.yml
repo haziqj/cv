@@ -68,7 +68,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           email: haziq.jamil@ubd.edu.bn  
-          build_dir: test/
+          build_dir: /
           branch: main
           jekyll: no
           
