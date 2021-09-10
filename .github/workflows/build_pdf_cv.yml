@@ -34,12 +34,12 @@ jobs:
         run: Rscript -e 'pagedown::chrome_print(rmarkdown::render("index.Rmd", params = list(pdf_mode = TRUE)))'
 
       - name: Rename PDF
-        run: Rscript -e 'file.rename("index.pdf", "haziq_cv.pdf")'    
+        run: Rscript -e 'file.rename("index.pdf", "haziq_cv_new.pdf")'    
 
       - uses: actions/upload-artifact@v2
         with:
           name: haziq_cv_pdf
-          path: index.pdf
+          path: haziq_cv_new.pdf
 
   checkdep:
     name: Checkout-and-Deploy
