@@ -69,6 +69,6 @@ jobs:
         with:
           email: haziq.jamil@ubd.edu.bn  
           build_dir: /
-          branch: main
+          branch: gh-pages
           jekyll: no
           
