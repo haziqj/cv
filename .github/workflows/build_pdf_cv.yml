@@ -28,6 +28,8 @@ jobs:
       #   uses: r-lib/actions/setup-tinytex@v1
                 # Rscript -e 'install.packages(c("rmarkdown", "remotes", "tidyverse", "iprior", "here", "gganimate", "gifski"))'      
 
+      - run: Rescript - e 'install.packages(c("remotes"))'
+
       - name: Install R packages
         run: Rscript -e 'remotes::install_github("rstudio/pagedown", dependencies = TRUE)'
         
