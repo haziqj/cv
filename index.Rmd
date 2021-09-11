@@ -276,14 +276,16 @@ publications %>%
 ```{r}
 publications %>%
   filter(type == "preprint") %>% 
-  mutate(citation = ifelse(
-    is.na(venue), 
-    glue("<span class='cv-entry-title'>{title}</span><br>",
-         "<span class='publication-authors'>{authors_full}</span><br>"),
-    glue("<span class='cv-entry-title'>{title}</span><br>",
-         "<span class='publication-authors'>{authors_full}</span><br>",
-         "<span class='publication-venue'>{venue}</span>")
-  )) %>% 
+  mutate(citation = case_when(
+    is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
+    !is.na(url) ~ glue("<span class='cv-entry-title mylink'><a href={url}>{title}</a></span><br>")
+  )) %>%
+  mutate(citation = glue("{citation}",
+                         "<span class='publication-authors'>{authors_full}</span><br>")) %>%
+  mutate(citation = case_when(
+    !is.na(venue) ~ glue("{citation}", "<span class='publication-venue'>{venue}</span>"),
+    TRUE ~ citation
+  )) %>%
   padding_function(., "W") %>% 
   blank_year_when_repeated() %>%
   select(year, number, citation) %>%
@@ -369,5 +371,9 @@ cv_entries %>%
 <br class="pageBreak">
 
 The source code for this document is available from <span class='mylink'><a href='https://github.com/haziqj/cv'> github.com/haziqj/cv </a></span>
+
+```{r, echo = TRUE}
+sessionInfo()
+```
 
 # Links
