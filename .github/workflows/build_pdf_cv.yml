@@ -2,11 +2,10 @@ on:
   push:
      branches:
        - main
-
-# on:
-#   schedule:
-#     # * is a special character in YAML so you have to quote this string
-#     - cron:  '0 17 * * *'      
+       
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 17 * * *'      
 
 name: buildpdf
 
@@ -68,7 +67,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
-          publish_branch: gh-pages
+          publish_branch: main
           cname: haziqj.ml
           allow_empty_commit: true
           keep_files: true
