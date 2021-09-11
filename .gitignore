@@ -8,3 +8,4 @@ _cache.nosync/*
 site/*
 index.html
 index_files/*
+content/*

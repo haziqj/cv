@@ -3,6 +3,7 @@ library(googlesheets4)
 gs4_deauth()
 
 sheets <- c("cv_entries", "publications")
+dir.create("content")
 
 store_sheet_in_csv <- function(sheet_name){
   read_sheet("https://docs.google.com/spreadsheets/d/1wPqqaIK70DcUNOuOB82n7JYGwW-nySkqsEkSoJxJ9B4/edit?usp=sharing",
