@@ -34,7 +34,7 @@ jobs:
         run: Rscript -e 'pagedown::chrome_print(rmarkdown::render("index.Rmd", params = list(pdf_mode = TRUE)))'
 
       - name: Build HTML CV
-        run: Rscript -e 'rmarkdown::render("index.Rmd", output_dir = "site", outparams = list(pdf_mode = FALSE))'
+        run: Rscript -e 'rmarkdown::render("index.Rmd", output_dir = "site", params = list(pdf_mode = FALSE))'
 
       - name: Move PDF and CSS folder
         run: |
