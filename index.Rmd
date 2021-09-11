@@ -358,6 +358,6 @@ cv_entries %>%
 
 <br class="pageBreak">
 
-The source code for this document is available from <span class='mylink'><a href='https://github.com/haziqj/cv'> github.com/haziqj/cv </a></span>. Document last rendered on `r Sys.time()` [`r Sys.timezone()`].
+The source code for this document is available from <span class='mylink'><a href='https://github.com/haziqj/cv'>github.com/haziqj/cv</a></span>. Document last rendered on `r Sys.time()` [`r Sys.timezone()`].
 
 # Links
