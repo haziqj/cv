@@ -58,7 +58,7 @@ jobs:
         run: |
           mv -f css/ site/css/
           mv -f haziq_cv.pdf site/haziq_cv.pdf
-          mv -f READM.md site/README.md
+          mv -f README.md site/README.md
 
       - name: Upload site folder
         uses: actions/upload-artifact@v2
