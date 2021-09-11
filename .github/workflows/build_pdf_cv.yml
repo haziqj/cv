@@ -39,7 +39,7 @@ jobs:
       - name: Move PDF and CSS folder
         run: |
           mv -f css/ site/css/
-          mv -f index.pdf site/haziq_cv.pdf
+          cp index.pdf site/haziq_cv.pdf
 
       - name: Upload site folder
         uses: actions/upload-artifact@v2
