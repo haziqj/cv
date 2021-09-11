@@ -53,24 +53,17 @@ jobs:
         with:
           name: haziq_cv_pdf       
 
-      # - name: Put PDF CV in main folder
-      #   uses: Cecilapp/GitHub-Pages-deploy@v3
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     email: haziq.jamil@ubd.edu.bn  
-      #     build_dir: gh-pages
-      #     branch: main
-
       - name: Put PDF CV in main folder
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          publish_branch: main
-          cname: haziqj.ml
-          allow_empty_commit: true
-          keep_files: true
+        run: |
+          mv -f haziq_cv.pdf ./
+        # uses: peaceiris/actions-gh-pages@v3
+        # with:
+        #   github_token: ${{ secrets.GITHUB_TOKEN }}
+        #   publish_dir: .
+        #   publish_branch: main
+        #   cname: haziqj.ml
+        #   allow_empty_commit: true
+        #   keep_files: true
 
       - uses: dsaltares/fetch-gh-release-asset@master
         with:
