@@ -20,8 +20,6 @@ jobs:
       
       - name: Install R
         uses: r-lib/actions/setup-r@v1
-        with:
-          r-version: '4.1.0'
       
       - name: Install pandoc
         uses: r-lib/actions/setup-pandoc@v1
@@ -54,7 +52,7 @@ jobs:
                 ), file("README.md")
               )'
 
-      - name: Move PDF and CSS folder
+      - name: Move PDF, CSS folder and README
         run: |
           mv -f css/ site/css/
           mv -f haziq_cv.pdf site/haziq_cv.pdf
