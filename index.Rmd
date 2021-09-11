@@ -5,7 +5,7 @@ output:
   pagedown::html_paged:
     title: Haziq
     template: no_title_paged.html
-    css: ["css/one-column-paged-academic.css", "css/font-awesome-5.1.0/css/all.css"]
+    css: NULL  # ["css/one-column-paged-academic.css", "css/font-awesome-5.1.0/css/all.css"]
     number_sections: false
     self_contained: false
     includes:

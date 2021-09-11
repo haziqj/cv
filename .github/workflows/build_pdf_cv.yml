@@ -28,7 +28,7 @@ jobs:
         uses: r-lib/actions/setup-tinytex@v1
       
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("rmarkdown", "pagedown", "tidyverse", "iprior", "here", "gganimate"))'      
+        run: Rscript -e 'install.packages(c("rmarkdown", "pagedown", "tidyverse", "iprior", "here", "gganimate", "gifski"))'      
         
       - name: Build PDF CV
         run: Rscript -e 'pagedown::chrome_print(rmarkdown::render("index.Rmd", params = list(pdf_mode = TRUE)))'

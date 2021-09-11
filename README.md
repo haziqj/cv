@@ -8,4 +8,6 @@ This repo contains the source files for the HTML and PDF versions of my CV. Than
 - [Ulrik Lyng's CV](https://ulyngs.github.io/pagedown-cv/) -- an aesthetically-pleasing one-column CV layout
 - [Nick Strayer's CV](https://github.com/nstrayer/cv) -- inspiration for [data driven CV](https://github.com/nstrayer/datadrivencv)
 
+I've set GitHub Actions to build my CV daily (maybe an overkill, we'll see). I can just update the Google Sheets and in theory the website will be built with the updated data. Cool.
+
 Copyright (C) 2021 Haziq Jamil
