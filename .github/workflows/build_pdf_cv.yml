@@ -13,7 +13,7 @@ jobs:
   buildpdf:
     name: Build-PDF
     runs-on: macOS-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -21,19 +21,19 @@ jobs:
       - name: Install R
         uses: r-lib/actions/setup-r@v1
       
-      # - name: Install pandoc
-      #   uses: r-lib/actions/setup-pandoc@v1
+      - name: Install pandoc
+        uses: r-lib/actions/setup-pandoc@v1
 
-      # - name: Install TinyTeX
-      #   uses: r-lib/actions/setup-tinytex@v1
-                # Rscript -e 'install.packages(c("rmarkdown", "remotes", "tidyverse", "iprior", "here", "gganimate", "gifski"))'      
+      - name: Install TinyTeX
+        uses: r-lib/actions/setup-tinytex@v1
 
       - name: Install remotes
-        run: Rscript -e 'install.packages("remotes")' 
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}      
+        run: |
+          Rscript -e 'install.packages(c("rmarkdown", "remotes", "tidyverse", "iprior", "here", "gganimate", "gifski"))'
+          Rscript -e 'remotes::install_github("haziqj/iprior", dependencies = TRUE)'
 
-      - name: Install R packages
-        run: Rscript -e 'remotes::install_github("haziqj/iprior", dependencies = TRUE)'
-        
       - name: Build PDF CV
         run: Rscript -e 'pagedown::chrome_print(rmarkdown::render("index.Rmd", params = list(pdf_mode = TRUE)))'
 
