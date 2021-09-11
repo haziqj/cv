@@ -12,7 +12,7 @@ links-to-footnotes: true
 # knit: pagedown::chrome_print
 params:
   pdf_mode:
-    value: false
+    value: true
 ---
 
 ```{r setup, include = FALSE}
@@ -72,18 +72,18 @@ blank_year_when_repeated <- function(cv_entry_tibble){
 
 
 ## ---- Read data --------------------------------------------------------------
-source("_content/sync_w_gsheets.R")  # read data
+source("content/sync_w_gsheets.R")  # read data
 
 # Publications
 publications <- 
-  read_csv("_content/publications.csv") %>% 
+  read_csv("content/publications.csv") %>% 
   mutate(authors_full = map_chr(authors_full, 
                                 replace_first_names_in_list_with_initial_and_dot)) %>% 
   mutate(authors_full = str_replace(authors_full, "H\\. Jamil", "*H\\. Jamil*")) %>%  # Make my name italic
   mutate(year = year(date))
 
 # CV entries
-cv_entries <- read_csv("_content/cv_entries.csv") %>% 
+cv_entries <- read_csv("content/cv_entries.csv") %>% 
   mutate(year = year(date)) %>%
   mutate(year_end = case_when(
     date_end == "present" ~ date_end,
