@@ -29,10 +29,10 @@ jobs:
                 # Rscript -e 'install.packages(c("rmarkdown", "remotes", "tidyverse", "iprior", "here", "gganimate", "gifski"))'      
 
       - name: Install remotes
-        run: Rscript -e 'install.packages("remotes")' 
+        run: Rscript -e 'install.packages("devtools")' 
 
       - name: Install R packages
-        run: Rscript -e 'remotes::install_github("rstudio/pagedown", dependencies = TRUE)'
+        run: Rscript -e 'devtools::install_github("rstudio/pagedown", dependencies = TRUE)'
         
       - name: Build PDF CV
         run: Rscript -e 'pagedown::chrome_print(rmarkdown::render("index.Rmd", params = list(pdf_mode = TRUE)))'
