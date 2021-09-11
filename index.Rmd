@@ -144,7 +144,7 @@ My expertise lie in statistical methodology and computation, with applications t
 
 I am passionate about bringing data and technology to the forefront of our daily interaction with the world.
 Using the R programming language, I build statistical models to analyse data to gain insights, make predictions, and aid decision-making.
-I am constantly engaged in cross-disciplinary research collaborations and statistical consultations.
+I am frequently engaged in cross-disciplinary research collaborations and statistical consultations.
 
 
 <h5>Research Interests</h5>
@@ -185,7 +185,7 @@ cv_entries %>%
 
 <br>
 
-## Experience
+## Employment
 ```{r}
 cv_entries %>% 
   filter(type == 'experience', is.na(exclude)) %>% 
@@ -260,10 +260,13 @@ publications %>%
     TRUE ~ ""
   )) %>% 
   # create citations
-  mutate(citation = glue("<span class='cv-entry-title'>{title}</span><br>",
+  mutate(citation = case_when(
+    is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
+    !is.na(url) ~ glue("<span class='cv-entry-title mylink'><a href={url}>{title}</a></span><br>")
+  )) %>%
+  mutate(citation = glue("{citation}",
                          "<span class='publication-authors'>{authors_full}</span><br>",
                          "<span class='publication-venue'>{venue}</span>{award}")) %>% 
-                         # "<span class='publication-venue'>{venue_abbrev}: {venue}</span>{award}")) %>% 
   # number entries with a prefix
   padding_function(., "A") %>% 
   blank_year_when_repeated() %>% 
@@ -296,7 +299,11 @@ publications %>%
 ```{r}
 publications %>%
   filter(type == "software") %>% 
-  mutate(citation = glue("<span class='cv-entry-title'>{title}</span><br>",
+  mutate(citation = case_when(
+    is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
+    !is.na(url) ~ glue("<span class='cv-entry-title mylink'><a href={url}>{title}</a></span><br>")
+  )) %>%
+  mutate(citation = glue("{citation}",
                          "<span class='publication-authors'>{authors_full}</span><br>",
                          "<span class='publication-venue'>{venue}</span>")) %>%
   padding_function(., "S") %>% 
@@ -305,34 +312,15 @@ publications %>%
   knitr::kable()
 ```
 
-### Posters and short presentations 
-```{r}
-cv_entries %>% 
-  filter(type == 'poster', is.na(exclude)) %>% 
-  # add commas as appropriate
-  mutate(where = if_else(!is.na(where) & !is.na(institution), glue(", {where}"), where),
-         department = if_else(!is.na(department), glue(", {department}"), department),
-         slides = if_else(!is.na(slides), glue("<a href={slides}>Slides</a>"), ""),
-         video = if_else(!is.na(video), glue("<a href={video}>Video</a>"), "")) %>%
-  mutate(additional_info = if_else(!is.na(additional_info), glue(", {additional_info}"), "")) %>% 
-  mutate(what = glue("<span class='cv-entry-title'>{institution}{where}</span>{department}{additional_info}<br>",
-                      "<span style='display:inline-block;' class='talk-title'>{what}</span>", 
-                     .na = "")) %>% 
-  padding_function(., "P") %>% 
-  blank_year_when_repeated() %>% 
-  select(year, number, what) %>% 
-  knitr::kable()
-```
-
 ### Talks 
 
 ::: {.conference-presentations-omitted}
-Further information for the following talks are available at  <span class='mylink'><a href='https://github.com/haziqj/cv'> haziqj.ml/talk </a></span>
+Further information regarding the following events are available at <span class='mylink'><a href='https://haziqj.ml/talk'> haziqj.ml/talk </a></span>
 :::
 
 ```{r}
 cv_entries %>% 
-  filter(type == 'talk', is.na(exclude)) %>% 
+  filter(type == "talk" | type == "poster", is.na(exclude)) %>% 
   # add commas as appropriate
   mutate(where = if_else(!is.na(where) & !is.na(institution), glue(", {where}"), where),
          department = if_else(!is.na(department), glue(", {department}"), department),
@@ -370,10 +358,6 @@ cv_entries %>%
 
 <br class="pageBreak">
 
-The source code for this document is available from <span class='mylink'><a href='https://github.com/haziqj/cv'> github.com/haziqj/cv </a></span>
-
-```{r, echo = TRUE}
-sessionInfo()
-```
+The source code for this document is available from <span class='mylink'><a href='https://github.com/haziqj/cv'> github.com/haziqj/cv </a></span>. Document last rendered on `r Sys.time()` [`r Sys.timezone()`].
 
 # Links
