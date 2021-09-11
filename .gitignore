@@ -6,3 +6,5 @@
 _cache.nosync/*
 .RDataTmp
 site/*
+index.html
+index_files/*

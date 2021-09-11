@@ -13,8 +13,6 @@ links-to-footnotes: true
 params:
   pdf_mode:
     value: true
-knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding, output_dir = "site") })    
 ---
 
 ```{r setup, include = FALSE}
