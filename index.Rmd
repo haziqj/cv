@@ -14,7 +14,7 @@ links-to-footnotes: true
 # knit: pagedown::chrome_print
 params:
   pdf_mode:
-    value: true
+    value: false
 ---
 
 ```{r setup, include = FALSE}
@@ -119,7 +119,7 @@ https://haziqj.ml <i class="fas fa-fw fa-globe-asia"></i>
 :::::: {.research-interests}
 
 ::: {.mylink}
-```{r cv_logo, out.width = "80%", fig.height = 4.1 / 1.35, fig.width = 2.5 / 1.35}
+```{r cv_logo, out.width = "80%", fig.height = 4.1 / 1.35, fig.width = 2.5 / 1.35, gganimate = list(nframes = 150 * 3, fps = 30, rewind = FALSE)}
 source("cv_logo.R")
 if (isTRUE(params$pdf_mode)) {
   p.static
