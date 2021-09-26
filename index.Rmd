@@ -337,7 +337,7 @@ cv_entries %>%
   knitr::kable(talk_tab[1,])
 ```
 
-<br class="pageBreak">
+<br>
 
 ```{r}
 knitr::kable(talk_tab[-1,])
