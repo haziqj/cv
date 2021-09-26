@@ -337,8 +337,6 @@ cv_entries %>%
   knitr::kable(talk_tab[1,])
 ```
 
-<br>
-
 ```{r}
 knitr::kable(talk_tab[-1,])
 ```
