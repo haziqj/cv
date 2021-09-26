@@ -332,8 +332,15 @@ cv_entries %>%
                      .na = "")) %>% 
   padding_function(., "T") %>% 
   blank_year_when_repeated() %>% 
-  select(year, number, what) %>% 
-  knitr::kable()
+  select(year, number, what) -> talk_tab
+
+  knitr::kable(talk_tab[1,])
+```
+
+<br class="pageBreak">
+
+```{r}
+knitr::kable(talk_tab[-1,])
 ```
 
 ## Skills
