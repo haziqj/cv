@@ -1,4 +1,4 @@
-Last rendered: 2021-11-01 17:29:56 UTC 
+Last rendered: 2021-11-02 17:28:17 UTC 
 
 # pandoc version
 
@@ -15,7 +15,7 @@ warranty, not even for merchantability or fitness for a particular purpose.
 # Session info
 
 ```
-R version 4.1.1 (2021-08-10)
+R version 4.1.2 (2021-11-01)
 Platform: x86_64-apple-darwin17.0 (64-bit)
 Running under: macOS Catalina 10.15.7
 
@@ -30,5 +30,5 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
-[1] compiler_4.1.1
+[1] compiler_4.1.2
 ```
