@@ -10,4 +10,4 @@ This repo contains the source files for the HTML and PDF versions of my CV. Than
 
 I've set GitHub Actions to build my CV daily (maybe an overkill, we'll see). I can just update the Google Sheets and in theory the CV website and PDF will be built automatically with the updated data. Cool.
 
-Copyright (C) 2021 Haziq Jamil
+Copyright (C) 2021--Present Haziq Jamil
