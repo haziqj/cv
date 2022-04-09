@@ -11,10 +11,10 @@ output:
     includes:
       in_header: include_css.html  # need this hack for gh-pages
 links-to-footnotes: true
-# knit: pagedown::chrome_print
+knit: pagedown::chrome_print
 params:
   pdf_mode:
-    value: false
+    value: true
 ---
 
 ```{r setup, include = FALSE}
@@ -334,11 +334,7 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-  knitr::kable(talk_tab[1,])
-```
-
-```{r}
-knitr::kable(talk_tab[-1,])
+  knitr::kable(talk_tab)
 ```
 
 ## Skills
@@ -361,7 +357,7 @@ knitr::kable(talk_tab[-1,])
 <!-- close 'cv-entries' div -->
 </div>
 
-<br class="pageBreak">
+<!-- <br class="pageBreak"> -->
 
 Made with the R package <span class='mylink'><a href='https://github.com/rstudio/pagedown'>pagedown</a></span>.
 The source code is available from <span class='mylink'><a href='https://github.com/haziqj/cv'>github.com/haziqj/cv</a></span>. 
