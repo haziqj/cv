@@ -149,8 +149,8 @@ I am frequently engaged in cross-disciplinary research collaborations and statis
 
 <h5>Research Interests</h5>
 
-|                                      |        |                               |
-|--------------------------------------|--------|-------------------------------|
+|                                      |                    |                               |
+|--------------------------------------|--------------------|-------------------------------|
 | Latent variable models               | &nbsp;&nbsp;&nbsp; | Structural equation models    |
 | Binary and multinomial probit models | &nbsp;&nbsp;&nbsp; | Truncated normal distribution |
 | Bayesian estimation                  | &nbsp;&nbsp;&nbsp; | EM algorithms                 |
