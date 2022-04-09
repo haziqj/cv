@@ -5,16 +5,16 @@ output:
   pagedown::html_paged:
     title: Haziq
     template: no_title_paged.html
-    css: NULL  # ["css/one-column-paged-academic.css", "css/font-awesome-5.1.0/css/all.css"]
+    css:  NULL # ["css/one-column-paged-academic.css", "css/font-awesome-5.1.0/css/all.css"]
     number_sections: false
     self_contained: false
     includes:
       in_header: include_css.html  # need this hack for gh-pages
 links-to-footnotes: true
-knit: pagedown::chrome_print
+# knit: pagedown::chrome_print
 params:
   pdf_mode:
-    value: true
+    value: false
 ---
 
 ```{r setup, include = FALSE}
