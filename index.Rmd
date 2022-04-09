@@ -81,7 +81,7 @@ publications <-
   read_csv("content/publications.csv") %>% 
   mutate(authors_full = map_chr(authors_full, 
                                 replace_first_names_in_list_with_initial_and_dot)) %>% 
-  mutate(authors_full = str_replace(authors_full, "H\\. Jamil", "*H\\. Jamil*")) %>%  # Make my name italic
+  mutate(authors_full = str_replace(authors_full, "H. Jamil", "<u>H. Jamil<\\/u>")) %>%  # Make my name italic
   mutate(year = year(date))
 
 # CV entries
