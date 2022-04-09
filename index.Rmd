@@ -312,6 +312,8 @@ publications %>%
   knitr::kable()
 ```
 
+<br class="pageBreak">
+
 ### Talks 
 
 ::: {.conference-presentations-omitted}
