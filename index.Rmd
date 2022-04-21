@@ -81,7 +81,7 @@ publications <-
   read_csv("content/publications.csv") %>% 
   mutate(authors_full = map_chr(authors_full, 
                                 replace_first_names_in_list_with_initial_and_dot)) %>% 
-  mutate(authors_full = str_replace(authors_full, "H. Jamil", "<u>H. Jamil<\\/u>")) %>%  # Make my name italic
+  mutate(authors_full = str_replace(authors_full, "H. Jamil", "*H. Jamil*")) %>%  # Make my name italic
   mutate(year = year(date))
 
 # CV entries
@@ -143,7 +143,7 @@ I am an **Assistant Professor in Statistics** at _Universiti Brunei Darussalam_ 
 My expertise lie in statistical methodology and computation, with applications towards the natural and social sciences.
 
 I am passionate about bringing data and technology to the forefront of our daily interaction with the world.
-Using the R programming language, I build statistical models to analyse data to gain insights, make predictions, and aid decision-making.
+Using the R programming language, I build statistical models for data analysis in order to gain insights, make predictions, and aid decision-making.
 I am frequently engaged in cross-disciplinary research collaborations and statistical consultations.
 
 
