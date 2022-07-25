@@ -1,6 +1,7 @@
 library(iprior)
 library(tidyverse)
 library(gganimate)
+library(transformr)
 
 # Generate data and fit I-prior model
 n <- 150
