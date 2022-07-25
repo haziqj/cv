@@ -33,7 +33,7 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}      
         run: |
-          Rscript -e 'install.packages(c("rmarkdown", "remotes", "tidyverse", "iprior", "here", "gganimate", "gifski", "transformr"))'
+          Rscript -e 'install.packages(c("rmarkdown", "remotes", "tidyverse", "iprior", "here", "gganimate", "gifski", "transformr"), type = "binary")'
           Rscript -e 'remotes::install_github("rstudio/pagedown", dependencies = TRUE)'
           Rscript -e 'remotes::install_github("haziqj/iprior", dependencies = TRUE)'
 
