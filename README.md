@@ -1,4 +1,4 @@
-Last rendered: 2022-10-31 17:30:57 UTC 
+Last rendered: 2022-11-01 17:22:09 UTC 
 
 # pandoc version
 
@@ -15,7 +15,7 @@ warranty, not even for merchantability or fitness for a particular purpose.
 # Session info
 
 ```
-R version 4.2.1 (2022-06-23)
+R version 4.2.2 (2022-10-31)
 Platform: x86_64-apple-darwin17.0 (64-bit)
 Running under: macOS Big Sur ... 10.16
 
@@ -30,5 +30,5 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
-[1] compiler_4.2.1
+[1] compiler_4.2.2
 ```
