@@ -11,10 +11,10 @@ output:
     includes:
       in_header: include_css.html  # need this hack for gh-pages
 links-to-footnotes: true
-# knit: pagedown::chrome_print
+knit: pagedown::chrome_print
 params:
   pdf_mode:
-    value: false
+    value: true
 ---
 
 ```{r setup, include = FALSE}
@@ -24,6 +24,8 @@ library(knitr)
 library(lubridate)
 library(glue)
 library(transformr)
+library(here)
+library(gganimate)
 
 # knitr options
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -313,13 +315,16 @@ publications %>%
   knitr::kable()
 ```
 
-<br class="pageBreak">
+<!-- <br class="pageBreak"> -->
 
 ### Talks 
 
 ::: {.conference-presentations-omitted}
 Further information regarding the following events are available at <span class='mylink'><a href='https://haziqj.ml/talk'> haziqj.ml/talk </a></span>
 :::
+
+<br class="pageBreak">
+
 
 ```{r}
 cv_entries %>% 
@@ -340,7 +345,6 @@ cv_entries %>%
   knitr::kable(talk_tab)
 ```
 
-<br class="pageBreak">
 
 
 ## Skills
