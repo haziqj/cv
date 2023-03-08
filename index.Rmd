@@ -212,7 +212,11 @@ cv_entries %>%
   kable()
 ```
 
+<!-- <br class="pageBreak"> -->
+
+
 ## Consultancy
+
 ```{r}
 cv_entries %>% 
   filter(type == 'consultancy', is.na(exclude)) %>% 
@@ -222,8 +226,12 @@ cv_entries %>%
      glue("<span class='cv-entry-title'>{what}</span><br>",
           "{where}<br>", "<span class='cv-entry-gray'>{additional_info}</span>")
   )) %>%
-  select(year, what) %>% 
-  kable()
+  select(year, what) -> consultant_tab
+kable(consultant_tab %>% slice(1))
+```
+
+```{r}
+kable(consultant_tab %>% slice(2))
 ```
 
 ## Grants and funding
@@ -254,7 +262,8 @@ cv_entries %>%
 
 ### Articles [(peer-reviewed)]{.review-note}
 ```{r}
-publications %>%
+tab <-
+  publications %>%
   filter(type == "paper") %>% 
   # insert appropriate icon for paper awards (and start with a line break)
   mutate(award = case_when(
@@ -273,11 +282,17 @@ publications %>%
   # number entries with a prefix
   padding_function(., "A") %>% 
   blank_year_when_repeated() %>% 
-  select(year, number, citation) %>%
-  knitr::kable()
+  select(year, number, citation)
+
+knitr::kable(tab %>% slice(1:5))
 ```
 
 <!-- <br class="pageBreak"> -->
+
+```{r}
+knitr::kable(slice(tab, -(1:5)))
+```
+
 ### Working papers [(preprints and unpublished reports)]{.review-note}
 ```{r}
 publications %>%
@@ -297,6 +312,8 @@ publications %>%
   select(year, number, citation) %>%
   knitr::kable()
 ```
+
+<!-- <br class="pageBreak"> -->
 
 ### Software
 ```{r}
@@ -323,7 +340,7 @@ publications %>%
 Further information regarding the following events are available at <span class='mylink'><a href='https://haziqj.ml/talk'> haziqj.ml/talk </a></span>
 :::
 
-<br class="pageBreak">
+<!-- <br class="pageBreak"> -->
 
 
 ```{r}
@@ -342,10 +359,12 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-  knitr::kable(talk_tab)
+knitr::kable(talk_tab %>% slice(1:10))
 ```
 
-
+```{r}
+knitr::kable(talk_tab %>% slice(-(1:10)))
+```
 
 ## Skills
 
