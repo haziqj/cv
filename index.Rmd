@@ -316,9 +316,10 @@ publications %>%
   knitr::kable()
 ```
 
-<br class="pageBreak">
+<!-- <br class="pageBreak"> -->
 
 ### Software
+
 ```{r}
 publications %>%
   filter(type == "software") %>% 
@@ -365,7 +366,7 @@ cv_entries %>%
 knitr::kable(talk_tab %>% slice(1:10))
 ```
 
-<br class="pageBreak">
+<!-- <br class="pageBreak"> -->
 
 ```{r}
 knitr::kable(talk_tab %>% slice(-(1:10)))
