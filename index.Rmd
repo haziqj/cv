@@ -366,11 +366,13 @@ cv_entries %>%
 knitr::kable(talk_tab %>% slice(1:10))
 ```
 
-<br>
+<!-- <br> -->
 <!-- <br class="pageBreak"> -->
 
 ```{r}
-knitr::kable(talk_tab %>% slice(-(1:10)))
+tmp <- talk_tab %>% slice(-(1:10))
+tmp[1, 1] <- "2018"
+knitr::kable(tmp)
 ```
 
 ## Skills
