@@ -366,6 +366,7 @@ cv_entries %>%
 knitr::kable(talk_tab %>% slice(1:10))
 ```
 
+<br>
 <!-- <br class="pageBreak"> -->
 
 ```{r}
