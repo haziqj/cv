@@ -1,13 +1,13 @@
-Last rendered: 2023-03-29 17:59:40 UTC 
+Last rendered: 2023-03-30 15:42:53 UTC 
 
 # pandoc version
 
 ```
-pandoc 2.14.2
-Compiled with pandoc-types 1.22, texmath 0.12.3.1, skylighting 0.11,
-citeproc 0.5, ipynb 0.1.0.1
+pandoc 2.17.1.1
+Compiled with pandoc-types 1.22.1, texmath 0.12.4, skylighting 0.12.2,
+citeproc 0.6.0.1, ipynb 0.2
 User data directory: /Users/runner/.local/share/pandoc
-Copyright (C) 2006-2021 John MacFarlane. Web:  https://pandoc.org
+Copyright (C) 2006-2022 John MacFarlane. Web:  https://pandoc.org
 This is free software; see the source for copying conditions. There is no
 warranty, not even for merchantability or fitness for a particular purpose.
 ```
