@@ -75,7 +75,6 @@ blank_year_when_repeated <- function(cv_entry_tibble){
            ))
 }
 
-
 ## ---- Read data --------------------------------------------------------------
 source("sync_w_gsheets.R")  # read data
 
