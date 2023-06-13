@@ -177,15 +177,21 @@ cv_entries %>%
 
 ## Awards & honours
 ```{r}
-cv_entries %>% 
+awards <-
+  cv_entries %>% 
   filter(type == 'awards') %>% 
+  arrange(desc(date)) %>%
   mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}")) %>%  
   blank_year_when_repeated() %>% 
-  select(year, what) %>%
-  kable()
+  select(year, what)
+kable(awards[1:4, ])
 ```
 
 <br>
+
+<!-- ```{r} -->
+<!-- kable(awards[-(1:4), ]) -->
+<!-- ``` -->
 
 ## Employment
 ```{r}
