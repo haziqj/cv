@@ -1,4 +1,4 @@
-Last rendered: 2023-06-16 17:11:41.028745 UTC 
+Last rendered: 2023-06-17 17:08:40.65473 UTC 
 
 # pandoc version
 
@@ -15,7 +15,7 @@ warranty, not even for merchantability or fitness for a particular purpose.
 # Session info
 
 ```
-R version 4.3.0 (2023-04-21)
+R version 4.3.1 (2023-06-16)
 Platform: x86_64-apple-darwin20 (64-bit)
 Running under: macOS Monterey 12.6.5
 
@@ -33,5 +33,5 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
-[1] compiler_4.3.0
+[1] compiler_4.3.1
 ```
