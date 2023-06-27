@@ -1,4 +1,4 @@
-Last rendered: 2023-06-26 17:08:26.437033 UTC 
+Last rendered: 2023-06-27 17:08:02.432781 UTC 
 
 # pandoc version
 
@@ -17,7 +17,7 @@ warranty, not even for merchantability or fitness for a particular purpose.
 ```
 R version 4.3.1 (2023-06-16)
 Platform: x86_64-apple-darwin20 (64-bit)
-Running under: macOS Monterey 12.6.6
+Running under: macOS Monterey 12.6.7
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
