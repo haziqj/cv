@@ -368,15 +368,15 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-knitr::kable(talk_tab %>% slice(1:7))
+knitr::kable(talk_tab %>% slice(1:6))
 ```
 
 <!-- <br> -->
 <!-- <br class="pageBreak"> -->
 
 ```{r}
-tmp <- talk_tab %>% slice(-(1:7))
-tmp[1, 1] <- "2019"
+tmp <- talk_tab %>% slice(-(1:6))
+# tmp[1, 1] <- "2019"
 knitr::kable(tmp)
 ```
 
