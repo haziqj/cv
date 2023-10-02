@@ -141,7 +141,7 @@ if(params$pdf_mode){
 :::
 
 ::: {.interests}
-I am an **Assistant Professor in Statistics** at _Universiti Brunei Darussalam_ (UBD).
+I am an **Assistant Professor of Statistics** at _Universiti Brunei Darussalam_ (UBD).
 My expertise lie in statistical methodology and computation, with applications towards the natural and social sciences.
 
 I am passionate about bringing data and technology to the forefront of our daily interaction with the world.
@@ -154,9 +154,9 @@ I am frequently engaged in cross-disciplinary research collaborations and statis
 |                                      |                    |                               |
 |--------------------------------------|--------------------|-------------------------------|
 | Latent variable models               | &nbsp;&nbsp;&nbsp; | Structural equation models    |
-| Binary and multinomial probit models | &nbsp;&nbsp;&nbsp; | Truncated normal distribution |
-| Bayesian estimation                  | &nbsp;&nbsp;&nbsp; | EM algorithms                 |
-| Variational inference                | &nbsp;&nbsp;&nbsp; |                               |
+| Binary and multinomial probit models | &nbsp;&nbsp;&nbsp; | Spatio-temporal models |
+| Hedonic pricing models               | &nbsp;&nbsp;&nbsp; | Bayesian estimation                 |
+| Gaussian processes                | &nbsp;&nbsp;&nbsp; |                               |
 
 :::
 ::::::
@@ -195,12 +195,14 @@ kable(awards[1:4, ])
 
 ## Employment
 ```{r}
-cv_entries %>% 
+tab_emp <-
+  cv_entries %>% 
   filter(type == 'experience', is.na(exclude)) %>% 
   mutate(what = glue("<span class='cv-entry-title'>{what}</span><br>",
                      "{where}<br>", "<span class='cv-entry-gray'>{additional_info}</span>")) %>% 
-  select(year, what) %>% 
-  kable()
+  select(year, what)
+tab_emp$year[3] <- c("2010 --- 2014<br>2018 --- 2019")
+kable(tab_emp)
 ```
 
 ## Service
@@ -303,7 +305,8 @@ knitr::kable(slice(tab, -(1:5)))
 ### Working papers [(preprints and unpublished reports)]{.review-note}
 
 ```{r}
-publications %>%
+tab_wp <-
+  publications %>%
   filter(type == "preprint") %>% 
   mutate(citation = case_when(
     is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
@@ -317,11 +320,16 @@ publications %>%
   )) %>%
   padding_function(., "W") %>% 
   blank_year_when_repeated() %>%
-  select(year, number, citation) %>%
-  knitr::kable()
+  select(year, number, citation)
+
+knitr::kable(tab_wp %>% slice(1:4))
 ```
 
-<!-- <br class="pageBreak"> -->
+<br class="pageBreak">
+
+```{r}
+knitr::kable(slice(tab_wp, -(1:4)))
+```
 
 ### Software
 
@@ -368,17 +376,14 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-knitr::kable(talk_tab %>% slice(1:6))
+knitr::kable(talk_tab %>% slice(1:2))
 ```
-
-<!-- <br> -->
-<!-- <br class="pageBreak"> -->
 
 ```{r}
-tmp <- talk_tab %>% slice(-(1:6))
-# tmp[1, 1] <- "2019"
-knitr::kable(tmp)
+knitr::kable(talk_tab %>% slice(-(1:2)))
 ```
+
+<br class="pageBreak">
 
 ## Skills
 
@@ -390,7 +395,7 @@ knitr::kable(tmp)
 ::: {.interests}
 <i class='fas fa-fw fa-chart-line'></i> &nbsp; **Programming, data analysis and visualisation** using R, BUGS/JAGS, Stan, Stata, Mplus, and Mathematica
 
-<i class='fa fa-fw fa-flask'></i> &nbsp; **Reproducible research** using R Markdown, LaTeX, Git and AWS EC2
+<i class='fa fa-fw fa-flask'></i> &nbsp; **Reproducible research** using Quarto, R Markdown, LaTeX, Git and AWS EC2
 
 <i class='fa fa-fw fa-laptop'></i> &nbsp; **Web development** using HTML, CSS, Hugo, GitHub Pages and Netlify
 :::
