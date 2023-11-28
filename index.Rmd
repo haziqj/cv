@@ -141,7 +141,7 @@ if(params$pdf_mode){
 :::
 
 ::: {.interests}
-I am an **Assistant Professor of Statistics** at _Universiti Brunei Darussalam_ (UBD).
+I am an **Assistant Professor in Statistics** at _Universiti Brunei Darussalam_ (UBD).
 My expertise lie in statistical methodology and computation, with applications towards the natural and social sciences.
 
 I am passionate about bringing data and technology to the forefront of our daily interaction with the world.
@@ -153,7 +153,7 @@ I am frequently engaged in cross-disciplinary research collaborations and statis
 
 |                                      |                    |                               |
 |--------------------------------------|--------------------|-------------------------------|
-| Latent variable models               | &nbsp;&nbsp;&nbsp; | Structural equation models    |
+| Latent variable models               | &nbsp;&nbsp;&nbsp; | Composite likelihood methods    |
 | Binary and multinomial probit models | &nbsp;&nbsp;&nbsp; | Spatio-temporal models |
 | Hedonic pricing models               | &nbsp;&nbsp;&nbsp; | Bayesian estimation                 |
 | Gaussian processes                | &nbsp;&nbsp;&nbsp; |                               |
@@ -383,7 +383,6 @@ knitr::kable(talk_tab %>% slice(1:2))
 knitr::kable(talk_tab %>% slice(-(1:2)))
 ```
 
-<br class="pageBreak">
 
 ## Skills
 
