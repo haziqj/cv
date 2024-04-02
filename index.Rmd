@@ -201,7 +201,7 @@ tab_emp <-
   mutate(what = glue("<span class='cv-entry-title'>{what}</span><br>",
                      "{where}<br>", "<span class='cv-entry-gray'>{additional_info}</span>")) %>% 
   select(year, what)
-tab_emp$year[3] <- c("2010 --- 2014<br>2018 --- 2019")
+tab_emp$year[4] <- c("2010 --- 2014<br>2018 --- 2019")
 kable(tab_emp)
 ```
 
@@ -219,7 +219,7 @@ cv_entries %>%
   kable()
 ```
 
-<!-- <br class="pageBreak"> -->
+<br class="pageBreak">
 
 
 ## Consultancy
@@ -234,13 +234,7 @@ cv_entries %>%
           "{where}<br>", "<span class='cv-entry-gray'>{additional_info}</span>")
   )) %>%
   select(year, what) -> consultant_tab
-kable(consultant_tab %>% slice(1))
-```
-
-<br class="pageBreak">
-
-```{r}
-kable(consultant_tab %>% slice(2))
+kable(consultant_tab)
 ```
 
 ## Grants and funding
@@ -295,8 +289,6 @@ tab <-
 
 knitr::kable(tab %>% slice(1:5))
 ```
-
-<br class="pageBreak">
 
 ```{r}
 knitr::kable(slice(tab, -(1:5)))
