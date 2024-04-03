@@ -219,8 +219,7 @@ cv_entries %>%
   kable()
 ```
 
-<br class="pageBreak">
-
+<!-- <br class="pageBreak"> -->
 
 ## Consultancy
 
@@ -287,11 +286,11 @@ tab <-
   blank_year_when_repeated() %>% 
   select(year, number, citation)
 
-knitr::kable(tab %>% slice(1:5))
+knitr::kable(tab %>% slice(1:4))
 ```
 
 ```{r}
-knitr::kable(slice(tab, -(1:5)))
+knitr::kable(slice(tab, -(1:4)))
 ```
 
 ### Working papers [(preprints and unpublished reports)]{.review-note}
@@ -317,7 +316,7 @@ tab_wp <-
 knitr::kable(tab_wp %>% slice(1:4))
 ```
 
-<br class="pageBreak">
+<!-- <br class="pageBreak"> -->
 
 ```{r}
 knitr::kable(slice(tab_wp, -(1:4)))
