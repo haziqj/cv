@@ -313,19 +313,20 @@ tab_wp <-
   blank_year_when_repeated() %>%
   select(year, number, citation)
 
-knitr::kable(tab_wp %>% slice(1:4))
+knitr::kable(tab_wp |> slice(1:2))
 ```
 
 <!-- <br class="pageBreak"> -->
 
 ```{r}
-knitr::kable(slice(tab_wp, -(1:4)))
+knitr::kable(slice(tab_wp, -(1:2)))
 ```
 
 ### Software
 
 ```{r}
-publications %>%
+tab_sw <-
+  publications %>%
   filter(type == "software") %>% 
   mutate(citation = case_when(
     is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
@@ -336,11 +337,16 @@ publications %>%
                          "<span class='publication-venue'>{venue}</span>")) %>%
   padding_function(., "S") %>% 
   blank_year_when_repeated() %>%
-  select(year, number, citation) %>%
-  knitr::kable()
+  select(year, number, citation)
+knitr::kable(tab_sw |> slice(1:2))
 ```
 
-<!-- <br class="pageBreak"> -->
+<br class="pageBreak">
+
+```{r}
+knitr::kable(slice(tab_sw, -(1:2)))
+```
+
 
 ### Talks 
 
@@ -367,11 +373,11 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-knitr::kable(talk_tab %>% slice(1:2))
+knitr::kable(talk_tab %>% slice(1:14))
 ```
 
 ```{r}
-knitr::kable(talk_tab %>% slice(-(1:2)))
+knitr::kable(talk_tab %>% slice(-(1:14)))
 ```
 
 
