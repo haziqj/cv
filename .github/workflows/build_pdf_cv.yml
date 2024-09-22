@@ -60,7 +60,7 @@ jobs:
           mv -f README.md site/README.md
 
       - name: Upload site folder
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: haziq_cv
           path: site/
@@ -72,7 +72,7 @@ jobs:
 
     steps:
       - name: Download site folder
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: haziq_cv     
 
