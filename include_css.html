@@ -1,2 +1,11 @@
 <link rel="stylesheet" href="css/one-column-paged-academic.css" type="text/css" />
 <link rel="stylesheet" href="css/font-awesome-5.1.0/css/all.css" type="text/css" />
+<script>
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+  document.documentElement.style.setProperty('--last-updated', `"     Last updated: ${formattedDate}"`);
+</script>
