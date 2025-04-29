@@ -286,18 +286,21 @@ tab <-
   blank_year_when_repeated() %>% 
   select(year, number, citation)
 
-knitr::kable(tab |> slice(1:3))
-```
-
-<br class="pageBreak">
-
-
-```{r}
-knitr::kable(slice(tab, -(1:3)))
+knitr::kable(tab |> slice(1:4))
 ```
 
 <!-- <br class="pageBreak"> -->
 
+
+```{r}
+knitr::kable(slice(tab, (5:15)))
+```
+
+<!-- <br class="pageBreak"> -->
+
+```{r}
+knitr::kable(slice(tab, -(1:15)))
+```
 
 ### Working papers [(preprints and unpublished reports)]{.review-note}
 
@@ -344,13 +347,13 @@ tab_sw <-
   padding_function(., "S") %>% 
   blank_year_when_repeated() %>%
   select(year, number, citation)
-knitr::kable(tab_sw |> slice(1:2))
+knitr::kable(tab_sw |> slice(1))
 ```
 
 <!-- <br class="pageBreak"> -->
 
 ```{r}
-knitr::kable(slice(tab_sw, -(1:2)))
+knitr::kable(slice(tab_sw, -(1)))
 ```
 
 
@@ -379,12 +382,12 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-knitr::kable(talk_tab)
+knitr::kable(talk_tab |> slice(1:6))
 ```
 
-<!-- ```{r} -->
-<!-- knitr::kable(talk_tab %>% slice(-(1:14))) -->
-<!-- ``` -->
+```{r}
+knitr::kable(talk_tab %>% slice(-(1:6)))
+```
 
 
 ## Skills
