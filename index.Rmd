@@ -379,12 +379,12 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-knitr::kable(talk_tab %>% slice(1:14))
+knitr::kable(talk_tab)
 ```
 
-```{r}
-knitr::kable(talk_tab %>% slice(-(1:14)))
-```
+<!-- ```{r} -->
+<!-- knitr::kable(talk_tab %>% slice(-(1:14))) -->
+<!-- ``` -->
 
 
 ## Skills
