@@ -1,4 +1,4 @@
-Last rendered: 2025-04-29 12:57:59.95401 UTC 
+Last rendered: 2025-06-30 00:27:06.641767 UTC 
 
 # pandoc version
 
@@ -15,9 +15,9 @@ warranty, not even for merchantability or fitness for a particular purpose.
 # Session info
 
 ```
-R version 4.5.0 (2025-04-11)
+R version 4.5.1 (2025-06-13)
 Platform: aarch64-apple-darwin20
-Running under: macOS Sonoma 14.7.5
+Running under: macOS Sonoma 14.7.6
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRblas.0.dylib 
@@ -33,5 +33,5 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
-[1] compiler_4.5.0
+[1] compiler_4.5.1
 ```
