@@ -141,7 +141,7 @@ if(params$pdf_mode){
 :::
 
 ::: {.interests}
-I am an **Assistant Professor in Statistics** at _Universiti Brunei Darussalam_ (UBD).
+I am an **Assistant Professor in Statistics** at _Universiti Brunei Darussalam_ (UBD), and in August 2025, I will be joining King Abdullah University of Science and Technology (KAUST) as a Research Specialist.
 My expertise lie in statistical methodology and computation, with applications towards the natural and social sciences.
 
 I am passionate about bringing data and technology to the forefront of our daily interaction with the world.
@@ -153,10 +153,10 @@ I am frequently engaged in cross-disciplinary research collaborations and statis
 
 |                                      |                    |                               |
 |--------------------------------------|--------------------|-------------------------------|
-| Latent variable models               | &nbsp;&nbsp;&nbsp; | Composite likelihood methods    |
-| Binary and multinomial probit models | &nbsp;&nbsp;&nbsp; | Spatio-temporal models |
-| Hedonic pricing models               | &nbsp;&nbsp;&nbsp; | Bayesian estimation                 |
-| Gaussian processes                | &nbsp;&nbsp;&nbsp; |                               |
+| Latent variable models               |  | Bayesian estimation    |
+| Composite likelihood methods |  | Integrated Nested Laplace Approximation (INLA)  |
+| Spatio-temporal models              |  |  Hedonic pricing models                 |
+
 
 :::
 ::::::
@@ -207,7 +207,8 @@ kable(tab_emp)
 
 ## Service
 ```{r}
-cv_entries %>% 
+tab_service <- 
+  cv_entries %>% 
   filter(type == 'service', is.na(exclude)) %>% 
   mutate(what = ifelse(
     is.na(additional_info),
@@ -215,8 +216,10 @@ cv_entries %>%
      glue("<span class='cv-entry-title'>{what}</span><br>",
           "{where}<br>", "<span class='cv-entry-gray'>{additional_info}</span>")
   )) %>%
-  select(year, what) %>% 
-  kable()
+  select(year, what)
+
+kable(tab_service |> slice(1:4))
+kable(tab_service |> slice(-(1:4)))
 ```
 
 <!-- <br class="pageBreak"> -->
@@ -233,7 +236,6 @@ cv_entries %>%
           "{where}<br>", "<span class='cv-entry-gray'>{additional_info}</span>")
   )) %>%
   select(year, what) -> consultant_tab
-kable(consultant_tab)
 ```
 
 ## Grants and funding
@@ -325,7 +327,7 @@ tab_wp <-
 knitr::kable(tab_wp)
 ```
 
-<!-- <br class="pageBreak"> -->
+<br class="pageBreak">
 
 <!-- ```{r} -->
 <!-- knitr::kable(slice(tab_wp, -(1:2))) -->
@@ -347,14 +349,10 @@ tab_sw <-
   padding_function(., "S") %>% 
   blank_year_when_repeated() %>%
   select(year, number, citation)
-knitr::kable(tab_sw |> slice(1))
+knitr::kable(tab_sw)
 ```
 
 <!-- <br class="pageBreak"> -->
-
-```{r}
-knitr::kable(slice(tab_sw, -(1)))
-```
 
 
 ### Talks 
@@ -382,11 +380,11 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-knitr::kable(talk_tab |> slice(1:6))
+knitr::kable(talk_tab |> slice(1:4))
 ```
 
 ```{r}
-knitr::kable(talk_tab %>% slice(-(1:6)))
+knitr::kable(talk_tab %>% slice(-(1:4)))
 ```
 
 
