@@ -141,7 +141,7 @@ if(params$pdf_mode){
 :::
 
 ::: {.interests}
-I am an **Assistant Professor in Statistics** at _Universiti Brunei Darussalam_ (UBD), and in August 2025, I will be joining King Abdullah University of Science and Technology (KAUST) as a Research Specialist.
+I am a Research Specialist working at King Abdullah University of Science and Technology (KAUST), currently on leave from my position as an Assistant Professor in Statistics at Universiti Brunei Darussalam (UBD).
 My expertise lie in statistical methodology and computation, with applications towards the natural and social sciences.
 
 I am passionate about bringing data and technology to the forefront of our daily interaction with the world.
@@ -327,7 +327,7 @@ tab_wp <-
 knitr::kable(tab_wp)
 ```
 
-<br class="pageBreak">
+<!-- <br class="pageBreak"> -->
 
 <!-- ```{r} -->
 <!-- knitr::kable(slice(tab_wp, -(1:2))) -->
