@@ -112,7 +112,7 @@ if (file.exists("index.pdf")) {
 :::
 
 ::: {.contact-info}
-haziq.jamil@ubd.edu.bn <i class="fas fa-fw fa-envelope"></i>
+haziq.jamil@kaust.edu.sa <i class="fas fa-fw fa-envelope"></i>
 https://haziqj.ml <i class="fas fa-fw fa-globe-asia"></i>
 :::
 
@@ -229,19 +229,22 @@ kable(tab_service |> slice(-(1:4)))
 ```{r}
 cv_entries %>% 
   filter(type == 'consultancy', is.na(exclude)) %>% 
+  arrange(desc(date)) %>%
   mutate(what = ifelse(
     is.na(additional_info),
      glue("<span class='cv-entry-title'>{what}</span><br>{where}<br>"),
      glue("<span class='cv-entry-title'>{what}</span><br>",
           "{where}<br>", "<span class='cv-entry-gray'>{additional_info}</span>")
   )) %>%
-  select(year, what) -> consultant_tab
+  select(year, what) %>%
+  kable()
 ```
 
 ## Grants and funding
 ```{r}
 cv_entries %>%
   filter(type == 'major_grants') %>%
+  arrange(desc(date)) %>%
   mutate(what = if_else(
     is.na(additional_info),
     glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}"),
@@ -288,21 +291,21 @@ tab <-
   blank_year_when_repeated() %>% 
   select(year, number, citation)
 
-knitr::kable(tab |> slice(1:4))
+knitr::kable(tab)
 ```
 
 <!-- <br class="pageBreak"> -->
 
 
-```{r}
-knitr::kable(slice(tab, (5:15)))
-```
+<!-- ```{r} -->
+<!-- knitr::kable(slice(tab, (5:15))) -->
+<!-- ``` -->
 
 <!-- <br class="pageBreak"> -->
 
-```{r}
-knitr::kable(slice(tab, -(1:15)))
-```
+<!-- ```{r} -->
+<!-- knitr::kable(slice(tab, -(1:15))) -->
+<!-- ``` -->
 
 ### Working papers [(preprints and unpublished reports)]{.review-note}
 
@@ -380,12 +383,14 @@ cv_entries %>%
   blank_year_when_repeated() %>% 
   select(year, number, what) -> talk_tab
 
-knitr::kable(talk_tab |> slice(1:4))
+knitr::kable(talk_tab)
 ```
 
-```{r}
-knitr::kable(talk_tab %>% slice(-(1:4)))
-```
+<!-- ```{r} -->
+<!-- knitr::kable(talk_tab %>% slice(-(1:4))) -->
+<!-- ``` -->
+
+<!-- <br class="pageBreak"> -->
 
 
 ## Skills
