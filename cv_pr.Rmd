@@ -1,0 +1,401 @@
+---
+title: CV -- Haziq Jamil
+description: Curriculum vitae for Dr Haziq Jamil, Assistant Professor in Statistics (UBD).
+output:
+  pagedown::html_paged:
+    title: Haziq
+    template: no_title_paged.html
+    css:  NULL # ["css/one-column-paged-academic.css", "css/font-awesome-5.1.0/css/all.css"]
+    number_sections: false
+    self_contained: false
+    includes:
+      in_header: include_css.html  # need this hack for gh-pages
+links-to-footnotes: true
+knit: pagedown::chrome_print
+params:
+  pdf_mode:
+    value: true
+---
+
+```{r setup, include = FALSE}
+# Libraries
+library(tidyverse)
+library(knitr)
+library(lubridate)
+library(glue)
+library(transformr)
+library(here)
+library(gganimate)
+
+# knitr options
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+## ---- Helper functions -------------------------------------------------------
+
+# function which takes a name and replaces the first name with initial and dot
+replace_first_name_with_initial_and_dot <- function(author_name) {
+  str_replace(author_name, "(?<=\\S)\\S+", "\\.")
+}
+
+# function for doing this for an entry with a number of authors
+replace_first_names_in_list_with_initial_and_dot <- function(authors) {
+  authors_split <- str_split(authors, ",") %>% 
+    map(str_trim)
+  
+  authors_split[[1]] %>% map_chr(replace_first_name_with_initial_and_dot) %>% 
+    paste0(collapse = ", ")
+}
+
+# function for adding leading zero's when there's more than 10 entries
+padding_function <- function(cv_entries_tibble, letter_to_pad) {
+  if (nrow(cv_entries_tibble) > 9) {
+    cv_entries_tibble %>% 
+      arrange(date) %>%
+      mutate(number = str_pad(row_number(), width = 2, side = "left", pad = "0"),
+             number = str_c(letter_to_pad, number)) %>%
+      arrange(desc(date))
+  } else {
+    cv_entries_tibble %>% 
+      arrange(date) %>%
+      mutate(number = str_pad(row_number(), width = 1, side = "left", pad = "0"),
+             number = str_c(letter_to_pad, number)) %>%
+      arrange(desc(date))
+  }
+}
+
+# function for making a year blank when it's the same as the one preceding it
+blank_year_when_repeated <- function(cv_entry_tibble){
+  cv_entry_tibble %>% 
+    mutate(row_number = row_number()) %>% 
+    mutate(year = as.character(year),
+           year = case_when(
+             row_number == 1 ~ year,
+             year == lag(year) ~ "",
+             year != lag(year) ~ year
+           ))
+}
+
+## ---- Read data --------------------------------------------------------------
+source("sync_w_gsheets.R")  # read data
+
+# Publications
+publications <- 
+  read_csv("content/publications.csv") %>% 
+  mutate(authors_full = map_chr(authors_full, 
+                                replace_first_names_in_list_with_initial_and_dot)) %>% 
+  mutate(authors_full = str_replace(authors_full, "H. Jamil", "*H. Jamil*")) %>%  # Make my name italic
+  mutate(year = year(date))
+
+# CV entries
+cv_entries <- read_csv("content/cv_entries.csv") %>% 
+  mutate(year = year(date)) %>%
+  mutate(year_end = case_when(
+    date_end == "present" ~ date_end,
+    !is.na(date_end) ~ str_sub(date_end, 1, 4),
+    is.na(date_end) ~ date_end
+  )) %>%
+  mutate(year = ifelse((is.na(year_end) | year == year_end),
+                      year,
+                      str_c(year, " --- ", year_end)))
+
+# Rename pdf file
+if (file.exists("index.pdf")) {
+  if (file.exists("haziq_cv.pdf")) file.remove("haziq_cv.pdf")
+  file.rename(from = "index.pdf", "haziq_cv.pdf")
+}
+```
+
+:::::: {.title-and-contact}
+
+::: {.title}
+<h1 class="title">Haziq Jamil</h1>
+:::
+
+::: {.contact-info}
+haziq.jamil@kaust.edu.sa <i class="fas fa-fw fa-envelope"></i>
+https://haziqj.ml <i class="fas fa-fw fa-globe-asia"></i>
+:::
+
+::::::
+
+:::::: {.research-interests}
+
+::: {.mylink}
+```{r cv_logo, out.width = "80%", fig.height = 4.1 / 1.35, fig.width = 2.5 / 1.35, gganimate = list(nframes = 150 * 3, fps = 30, rewind = FALSE)}
+source("cv_logo.R")
+if (isTRUE(params$pdf_mode)) {
+  p.static
+} else {
+  # This takes a long time to animate!
+  p.anim
+}
+```
+
+```{r download_view, results = "asis"}
+if(params$pdf_mode){
+  cat("<i class='fas fa-fw fa-globe-asia'></i> View this CV online at *haziqj.ml/cv*")
+} else {
+  cat("<a href='https://haziqj.ml/cv/haziq_cv.pdf'><i class='fas fa-fw fa-download'></i> Download a PDF of this CV</a>")
+}
+```
+:::
+
+::: {.interests}
+I am a Research Specialist working at King Abdullah University of Science and Technology (KAUST), currently on leave from my position as an Assistant Professor in Statistics at Universiti Brunei Darussalam (UBD).
+My expertise lie in statistical methodology and computation, with applications towards the natural and social sciences.
+
+I am passionate about bringing data and technology to the forefront of our daily interaction with the world.
+Using the R programming language, I build statistical models for data analysis in order to gain insights, make predictions, and aid decision-making.
+I am frequently engaged in cross-disciplinary research collaborations and statistical consultations.
+
+
+<h5>Research Interests</h5>
+
+|                                      |                    |                               |
+|--------------------------------------|--------------------|-------------------------------|
+| Latent variable models               |  | Bayesian estimation    |
+| Composite likelihood methods |  | Integrated Nested Laplace Approximation (INLA)  |
+| Spatio-temporal models              |  |  Hedonic pricing models                 |
+
+
+:::
+::::::
+
+<div class="cv-entries">
+
+## Education
+```{r}
+cv_entries %>% 
+  filter(type == 'education') %>% 
+  mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}<br>", 
+                      "{additional_info}<br>",
+                      "<span class='cv-entry-gray'>{additional_info2}</span>")) %>% 
+  select(year, what) %>%
+  mutate(what = gsub("NA", "", what)) %>%
+  kable()
+```
+
+## Awards & honours
+```{r}
+awards <-
+  cv_entries %>% 
+  filter(type == 'awards') %>% 
+  arrange(desc(date)) %>%
+  mutate(what = glue("<span class='cv-entry-title'>{what}</span>, {where}")) %>%  
+  blank_year_when_repeated() %>% 
+  select(year, what)
+kable(awards[1:4, ])
+```
+
+<br>
+
+<!-- ```{r} -->
+<!-- kable(awards[-(1:4), ]) -->
+<!-- ``` -->
+
+## Employment
+```{r}
+tab_emp <-
+  cv_entries %>% 
+  filter(type == 'experience', is.na(exclude)) %>% 
+  mutate(additional_info = gsub(
+    "[Leave of absence from August 2025]<br>", "", additional_info, fixed = TRUE
+  )) %>%
+  mutate(what = glue("<span class='cv-entry-title'>{what}</span><br>",
+                     "{where}<br>", "<span class='cv-entry-gray'>{additional_info}</span>")) %>% 
+  select(year, what) 
+tab_emp <- tab_emp[c(1, 3), ]  # only UBD and KAUST
+tab_emp$year[2] <- c("2019 --- 2025")
+# tab_emp$what[2] <-
+#   gsub(
+#   "\\<br\\>\\<span class='cv-entry-gray'\\>\\[Leave of absence from August 2025\\]", "",
+#   tab_emp$what[2]
+# )
+kable(tab_emp)
+```
+
+
+## Grants and funding
+```{r}
+cv_entries %>%
+  filter(type == 'major_grants') %>%
+  arrange(desc(date)) %>%
+  mutate(what = if_else(
+    is.na(additional_info),
+    glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}"),
+    glue("<span class='cv-entry-title'>{what}</span> ({additional_info2}), {where}.<br>", 
+         "<span class='cv-entry-gray'>{additional_info}</span>")
+  )) %>%
+  select(year, what) %>%
+  kable()
+```
+
+
+## Research output {.three-split}
+
+<!-- :::::: {.grid-container-publications} -->
+<!-- ::: {.conference-publication-heading} -->
+<!-- <h3>Conference publications <br><span class="review-note">(fully reviewed, archival)</span></h3> -->
+<!-- ::: -->
+<!-- ::: {.conference-note} -->
+<!-- <h3>In computer science, top-tier conferences (<30% acceptance rate) are as, or more impactful than journals, see doi.org/fgjt2h</h3> -->
+<!-- ::: -->
+<!-- :::::: -->
+
+### Articles [(peer-reviewed)]{.review-note}
+```{r}
+tab <-
+  publications %>%
+  filter(type == "paper") %>% 
+  # insert appropriate icon for paper awards (and start with a line break)
+  mutate(award = case_when(
+    !is.na(award) & str_detect(award, "honourable") ~ glue("<br><i class='fas fa-fw fa-award'></i> <span class='publication-award'>{award}</span>"),
+    !is.na(award) ~ glue("<br><i class='fa fa-fw fa-trophy'></i> <span class='publication-award'>{award}</span>"),
+    TRUE ~ ""
+  )) %>% 
+  # create citations
+  mutate(citation = case_when(
+    is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
+    !is.na(url) ~ glue("<span class='cv-entry-title mylink'><a href={url}>{title}</a></span><br>")
+  )) %>%
+  mutate(citation = glue("{citation}",
+                         "<span class='publication-authors'>{authors_full}</span><br>",
+                         "<span class='publication-venue'>{venue}</span>{award}")) %>% 
+  # number entries with a prefix
+  padding_function(., "A") %>% 
+  blank_year_when_repeated() %>% 
+  select(year, number, citation)
+
+knitr::kable(tab)
+```
+
+<!-- <br class="pageBreak"> -->
+
+
+<!-- ```{r} -->
+<!-- knitr::kable(slice(tab, (5:15))) -->
+<!-- ``` -->
+
+<!-- <br class="pageBreak"> -->
+
+<!-- ```{r} -->
+<!-- knitr::kable(slice(tab, -(1:15))) -->
+<!-- ``` -->
+
+### Working papers [(preprints and unpublished reports)]{.review-note}
+
+```{r}
+tab_wp <-
+  publications %>%
+  filter(type == "preprint") %>% 
+  mutate(citation = case_when(
+    is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
+    !is.na(url) ~ glue("<span class='cv-entry-title mylink'><a href={url}>{title}</a></span><br>")
+  )) %>%
+  mutate(citation = glue("{citation}",
+                         "<span class='publication-authors'>{authors_full}</span><br>")) %>%
+  mutate(citation = case_when(
+    !is.na(venue) ~ glue("{citation}", "<span class='publication-venue'>{venue}</span>"),
+    TRUE ~ citation
+  )) %>%
+  padding_function(., "W") %>% 
+  blank_year_when_repeated() %>%
+  select(year, number, citation)
+
+knitr::kable(tab_wp)
+```
+
+<!-- <br class="pageBreak"> -->
+
+<!-- ```{r} -->
+<!-- knitr::kable(slice(tab_wp, -(1:2))) -->
+<!-- ``` -->
+
+### Software
+
+```{r}
+tab_sw <-
+  publications %>%
+  filter(type == "software") %>% 
+  mutate(citation = case_when(
+    is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
+    !is.na(url) ~ glue("<span class='cv-entry-title mylink'><a href={url}>{title}</a></span><br>")
+  )) 
+tab_sw$venue[c(5, 4, 3)] <- ""
+tab_sw$venue[2] <- "<img src=\"https://img.shields.io/github/downloads/haziqj/stat-tables/total.svg?color=yellow\">"
+tab_sw <-
+  tab_sw %>%
+  mutate(citation = glue("{citation}",
+                         "<span class='publication-authors'>{authors_full}</span><br>",
+                         "<span class='publication-venue'>{venue}</span>")) %>%
+  padding_function(., "S") %>% 
+  blank_year_when_repeated() %>%
+  select(year, number, citation)
+knitr::kable(tab_sw)
+```
+
+<!-- <br class="pageBreak"> -->
+
+
+### Talks 
+
+::: {.conference-presentations-omitted}
+Further information regarding the following events are available at <span class='mylink'><a href='https://haziqj.ml/talk'> haziqj.ml/talk </a></span>
+:::
+
+<!-- <br class="pageBreak"> -->
+
+
+```{r}
+cv_entries %>% 
+  filter(type == "talk" | type == "poster", is.na(exclude)) %>% 
+  # add commas as appropriate
+  mutate(where = if_else(!is.na(where) & !is.na(institution), glue(", {where}"), where),
+         department = if_else(!is.na(department), glue(", {department}"), department),
+         slides = if_else(!is.na(slides), glue("<a href={slides}>Slides</a>"), ""),
+         video = if_else(!is.na(video), glue("<a href={video}>Video</a>"), "")) %>%
+  mutate(additional_info = if_else(!is.na(additional_info), glue(", {additional_info}"), "")) %>% 
+  mutate(what = glue("<span class='cv-entry-title'>{institution}{where}</span>{department}{additional_info}<br>",
+                      "<span style='display:inline-block;' class='talk-title'>{what}</span>", 
+                     .na = "")) %>% 
+  padding_function(., "T") %>% 
+  blank_year_when_repeated() %>% 
+  select(year, number, what) -> talk_tab
+
+knitr::kable(talk_tab)
+```
+
+<!-- ```{r} -->
+<!-- knitr::kable(talk_tab %>% slice(-(1:4))) -->
+<!-- ``` -->
+
+<br class="pageBreak">
+
+
+## Skills
+
+:::::: {.research-interests}
+
+::: {.spacer}
+:::
+
+::: {.interests}
+<i class='fas fa-fw fa-chart-line'></i> &nbsp; **Programming, data analysis and visualisation** using R, BUGS/JAGS, Stan, Stata, Mplus, and Mathematica
+
+<i class='fa fa-fw fa-flask'></i> &nbsp; **Reproducible research** using Quarto, R Markdown, LaTeX, Git and AWS EC2
+
+<i class='fa fa-fw fa-laptop'></i> &nbsp; **Web development** using HTML, CSS, Hugo, GitHub Pages and Netlify
+:::
+
+::::::
+
+<!-- close 'cv-entries' div -->
+</div>
+
+<!-- <br class="pageBreak"> -->
+
+Made with the R package <span class='mylink'><a href='https://github.com/rstudio/pagedown'>pagedown</a></span>.
+The source code is available from <span class='mylink'><a href='https://github.com/haziqj/cv'>github.com/haziqj/cv</a></span>. 
+Document last rendered on `r Sys.time()` [`r Sys.timezone()`].
+
+# Links
