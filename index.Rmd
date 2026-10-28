@@ -218,8 +218,7 @@ tab_service <-
   )) %>%
   select(year, what)
 
-kable(tab_service |> slice(1:4))
-kable(tab_service |> slice(-(1:4)))
+kable(tab_service)
 ```
 
 <!-- <br class="pageBreak"> -->
