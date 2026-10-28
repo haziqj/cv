@@ -321,8 +321,8 @@ tab_sw <-
     is.na(url) ~ glue("<span class='cv-entry-title'>{title}</span><br>"),
     !is.na(url) ~ glue("<span class='cv-entry-title mylink'><a href={url}>{title}</a></span><br>")
   )) 
-tab_sw$venue[c(5, 4, 3)] <- ""
-tab_sw$venue[2] <- "<img src=\"https://img.shields.io/github/downloads/haziqj/stat-tables/total.svg?color=yellow\">"
+tab_sw$venue[str_detect(tab_sw$title, "bruneimap")] <- ""
+tab_sw$venue[str_detect(tab_sw$title, "stat-tables")] <- "<img src=\"https://img.shields.io/github/downloads/haziqj/stat-tables/total.svg?color=yellow\">"
 tab_sw <-
   tab_sw %>%
   mutate(citation = glue("{citation}",
