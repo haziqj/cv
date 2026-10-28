@@ -1,4 +1,4 @@
-Last rendered: 2026-08-31 20:25:08.710254 UTC 
+Last rendered: 2026-10-28 08:05:17.316706 UTC 
 
 # pandoc version
 
@@ -17,7 +17,7 @@ warranty, not even for merchantability or fitness for a particular purpose.
 ```
 R version 4.6.1 (2026-06-24)
 Platform: aarch64-apple-darwin23
-Running under: macOS Tahoe 26.5.2
+Running under: macOS Tahoe 26.6.2
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib 
